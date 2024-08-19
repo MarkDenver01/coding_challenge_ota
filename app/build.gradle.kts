@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -64,4 +65,14 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
     kspAndroidTest(libs.hilt.android.compiler)
+
+    // navigation compose
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+
+    // okhttp
+    implementation(libs.squareup.okhttp3)
+
+    // Retrofit
+    implementation(libs.squareup.retrofit2)
+    implementation(libs.jakeWharton.retrofit2ConverterKotlin)
 }

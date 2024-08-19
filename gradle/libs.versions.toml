@@ -8,9 +8,25 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.04.01"
+### ksp
 kspVersion = "1.9.0-1.0.13"
+### hilt
 hiltVersion = "2.49"
 hiltNavigationCompose = "1.2.0"
+### compose
+lifecycleRuntimeComposeAndroid = "2.8.1"
+### coroutines
+coroutinesVersion = "1.8.0"
+### kotlin-serialization
+kotlinxVersion = "1.4.0"
+### gson
+gsonVersion = "2.9.1"
+### okhttp3
+okhttp3Version = "4.10.0"
+### retrofit2
+retrofit2Version = "2.9.0"
+### jakeWharton
+jakeWhartonVersion = "0.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,16 +43,38 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+### hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltVersion" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltVersion" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
-
+### compose
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
+### Coroutines
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+# gson [Github](https://github.com/google/gson)
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
+# okhttp3 [Github](https://github.com/square/okhttp)
+squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3Version" }
+squareup-okhttp3Urlconnection = { group = "com.squareup.okhttp3", name = "okhttp-urlconnection", version.ref = "okhttp3Version" }
+squareup-okhttp3Logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Version" }
+# Retrofit2 [Github](https://github.com/square/retrofit)
+squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2Version" }
+squareup-retrofit2AdapterRxJava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit2Version" }
+squareup-retrofit2AdapterRxJava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit2Version" }
+squareup-retrofit2ConverterGson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2Version" }
+squareup-retrofit2ConverterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit2Version" }
+jakeWharton-retrofit2ConverterKotlin = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "jakeWhartonVersion" }
+# json [Github](https://github.com/Kotlin/kotlinx.serialization)
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.0.10" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
 
