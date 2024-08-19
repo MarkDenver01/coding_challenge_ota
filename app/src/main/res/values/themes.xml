@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Coding_challenge_ota" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
