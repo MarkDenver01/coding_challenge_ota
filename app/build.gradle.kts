@@ -75,4 +75,9 @@ dependencies {
     // Retrofit
     implementation(libs.squareup.retrofit2)
     implementation(libs.jakeWharton.retrofit2ConverterKotlin)
+
+    // kotlinx
+    //implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    //testImplementation(libs.kotlinx.coroutines.test)
 }

@@ -7,7 +7,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
-composeBom = "2024.04.01"
+composeBom = "2024.06.00"
 ### ksp
 kspVersion = "1.9.0-1.0.13"
 ### hilt
@@ -16,17 +16,17 @@ hiltNavigationCompose = "1.2.0"
 ### compose
 lifecycleRuntimeComposeAndroid = "2.8.1"
 ### coroutines
-coroutinesVersion = "1.8.0"
+coroutinesVersion = "1.7.3"
 ### kotlin-serialization
-kotlinxVersion = "1.4.0"
+kotlinxVersion = "1.5.0"
 ### gson
 gsonVersion = "2.9.1"
 ### okhttp3
-okhttp3Version = "4.10.0"
+okhttp3Version = "4.12.0"
 ### retrofit2
-retrofit2Version = "2.9.0"
+retrofit2Version = "2.11.0"
 ### jakeWharton
-jakeWhartonVersion = "0.8.0"
+jakeWhartonVersion = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,8 +51,8 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 ### compose
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 ### Coroutines
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+#kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+#kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
 # gson [Github](https://github.com/google/gson)
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
 # okhttp3 [Github](https://github.com/square/okhttp)
@@ -67,7 +67,7 @@ squareup-retrofit2ConverterGson = { group = "com.squareup.retrofit2", name = "co
 squareup-retrofit2ConverterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit2Version" }
 jakeWharton-retrofit2ConverterKotlin = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "jakeWhartonVersion" }
 # json [Github](https://github.com/Kotlin/kotlinx.serialization)
-kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxVersion" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
