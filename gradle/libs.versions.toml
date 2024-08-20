@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.2"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -9,18 +9,18 @@ lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.06.00"
 ### ksp
-kspVersion = "1.9.0-1.0.13"
+kspVersion = "2.0.10-1.0.24"
 ### hilt
-hiltVersion = "2.49"
+hiltVersion = "2.51.1"
 hiltNavigationCompose = "1.2.0"
 ### compose
-lifecycleRuntimeComposeAndroid = "2.8.1"
+lifecycleRuntimeComposeAndroid = "2.8.4"
 ### coroutines
 coroutinesVersion = "1.7.3"
 ### kotlin-serialization
-kotlinxVersion = "1.5.0"
+kotlinxVersion = "1.6.3"
 ### gson
-gsonVersion = "2.9.1"
+gsonVersion = "2.10.1"
 ### okhttp3
 okhttp3Version = "4.12.0"
 ### retrofit2
@@ -51,8 +51,8 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 ### compose
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 ### Coroutines
-#kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
-#kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
 # gson [Github](https://github.com/google/gson)
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
 # okhttp3 [Github](https://github.com/square/okhttp)
