@@ -1,11 +1,11 @@
-package com.example.coding_challenge_ota.data.downloader
+package com.example.coding_challenge_ota.utils.downloader
 
 import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import com.example.coding_challenge_ota.data.cache.BitmapCache
-import com.example.coding_challenge_ota.data.converter.PdfToBitmap
+import com.example.coding_challenge_ota.utils.converter.PdfToBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

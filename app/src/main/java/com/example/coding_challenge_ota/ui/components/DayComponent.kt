@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
 import com.example.coding_challenge_ota.ui.theme.LightGray
 
-
 private val days = listOf(
     "MON",
     "TUE",
@@ -39,9 +38,9 @@ private val days = listOf(
 )
 
 @Composable
-fun DayTabs(
+fun DayComponent(
     modifier: Modifier = Modifier,
-    onTabSelected: (index: Int) -> Unit
+    onTabSelected: (index: Int) -> Unit,
 ) {
     var selectedTabIndex by remember { mutableStateOf(0) }
 
@@ -67,10 +66,7 @@ fun DayTabs(
                         .padding(4.dp)
                         .size(16.dp)
                         .let {
-                            if (index == selectedTabIndex) it.background(
-                                MaterialTheme.colorScheme.primary,
-                                CircleShape
-                            )
+                            if (index == selectedTabIndex) it.background(MaterialTheme.colorScheme.primary, CircleShape)
                             else it.border(width = 1.dp, color = LightGray, shape = CircleShape)
                         }
                 )
@@ -89,9 +85,9 @@ fun DayTabs(
 fun DayTabsPreview() {
     Coding_challenge_otaTheme(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            DayTabs(
+            DayComponent(
+                modifier = Modifier.fillMaxWidth(),
                 onTabSelected = {},
-                modifier = Modifier.fillMaxWidth()
             )
         }
     }

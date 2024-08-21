@@ -1,4 +1,4 @@
-package com.example.coding_challenge_ota.domain.entity
+package com.example.coding_challenge_ota.domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

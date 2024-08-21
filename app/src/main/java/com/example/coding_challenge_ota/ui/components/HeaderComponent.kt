@@ -1,6 +1,5 @@
 package com.example.coding_challenge_ota.ui.components
 
-
 import androidx.compose.animation.core.EaseInOutCubic
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -41,37 +40,42 @@ import com.example.coding_challenge_ota.R
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
 
 @Composable
-fun TopScreen(
+fun HeaderComponent(
     modifier: Modifier = Modifier,
     progress: Float,
     progressStatus: String,
-    dayStreak: Int
+    dayStreak: Int,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.padding(horizontal = 16.dp, vertical = 10.dp)
+        modifier = modifier
+            .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Image(
-            modifier = Modifier.size(40.dp),
             painter = painterResource(id = R.drawable.ic_journey_status),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
         )
         ProgressHeader(
-            modifier = Modifier.padding(start = 12.dp),
             progress = progress,
-            progressStatus = progressStatus
+            progressStatus = progressStatus,
+            modifier = Modifier.padding(start = 12.dp)
         )
         Spacer(modifier = Modifier.weight(1f))
-        StreakHeader(dayStreak = dayStreak)
-        UserIconHeader(modifier = Modifier.padding(start = 16.dp))
+        StreakHeader(
+            dayStreak = dayStreak
+        )
+        UserIconHeader(
+            modifier = Modifier.padding(start = 16.dp)
+        )
     }
 }
 
 @Composable
 private fun ProgressHeader(
-    modifier: Modifier = Modifier,
     progress: Float,
-    progressStatus: String
+    progressStatus: String,
+    modifier: Modifier = Modifier
 ) {
     var animate by remember { mutableStateOf(false) }
     val progressValue by animateFloatAsState(
@@ -84,11 +88,13 @@ private fun ProgressHeader(
         label = "progress animation"
     )
 
-    LaunchedEffect(progress) { animate = true }
+    LaunchedEffect(progress) {
+        animate = true
+    }
 
     Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(6.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+        modifier = modifier
     ) {
         Text(
             text = progressStatus,
@@ -166,7 +172,7 @@ private fun UserIconHeader(
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(40.dp)
+                .size(10.12.dp, 17.77.dp)
         )
     }
 }
@@ -176,11 +182,11 @@ private fun UserIconHeader(
 private fun HeaderPreview() {
     Coding_challenge_otaTheme(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            TopScreen(
+            HeaderComponent(
+                modifier = Modifier.fillMaxWidth(),
                 progress = 0.03f,
                 progressStatus = "Taming Temper",
                 dayStreak = 0,
-                modifier = Modifier.fillMaxWidth()
             )
         }
     }

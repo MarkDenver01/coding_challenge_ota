@@ -75,13 +75,22 @@ dependencies {
 
     // okhttp
     implementation(libs.squareup.okhttp3)
+    implementation(libs.squareup.okhttp3Logging)
 
     // Retrofit
     implementation(libs.squareup.retrofit2)
+    implementation(libs.squareup.retrofit2ConverterGson)
     implementation(libs.jakeWharton.retrofit2ConverterKotlin)
+    implementation(libs.squareup.retrofit2AdapterRxJava2)
 
     // kotlinx
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // Room
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    ksp(libs.androidx.room.compiler)
 }

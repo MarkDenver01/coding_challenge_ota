@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -31,17 +30,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coding_challenge_ota.data.downloader.FileDownloader
-import com.example.coding_challenge_ota.domain.entity.Activity
-import com.example.coding_challenge_ota.domain.entity.iconFileName
-import com.example.coding_challenge_ota.domain.entity.iconUrl
+import com.example.coding_challenge_ota.utils.downloader.FileDownloader
+import com.example.coding_challenge_ota.domain.model.Activity
+import com.example.coding_challenge_ota.domain.model.iconFileName
+import com.example.coding_challenge_ota.domain.model.iconUrl
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
 
 @Composable
-fun ItemComponents(
+fun ActivityComponent(
     modifier: Modifier = Modifier,
     isLocked: Boolean,
-    activity: Activity,
+    activity: Activity
 ) {
     val context = LocalContext.current
     var imageBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
@@ -95,7 +94,7 @@ fun ItemComponents(
 @Preview
 @Composable
 fun LessonItemPreview() {
-    Coding_challenge_otaTheme (modifier = Modifier.fillMaxSize()) {
+    Coding_challenge_otaTheme(modifier = Modifier.fillMaxSize()) {
         FlowRow(
             maxItemsInEachRow = 2,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
@@ -104,20 +103,21 @@ fun LessonItemPreview() {
                 .fillMaxSize()
                 .padding(horizontal = 23.5.dp)
         ) {
-            ItemComponents(
+            ActivityComponent(
+                modifier = Modifier.weight(1f),
                 isLocked = false,
                 activity = Activity.Sample,
-                modifier = Modifier.weight(1f)
+
             )
-            ActivityItem(
+            ActivityComponent(
+                modifier = Modifier.weight(1f),
                 isLocked = true,
                 activity = Activity.Sample,
-                modifier = Modifier.weight(1f)
             )
-            ActivityItem(
+            ActivityComponent(
+                modifier = Modifier.weight(1f),
                 isLocked = true,
                 activity = Activity.Sample,
-                modifier = Modifier.weight(1f)
             )
         }
     }

@@ -1,4 +1,4 @@
-package com.example.coding_challenge_ota.domain.entity
+package com.example.coding_challenge_ota.domain.model
 
 
 import kotlinx.serialization.SerialName
@@ -18,7 +18,13 @@ data class Level(
     val activities: List<Activity>
 ) {
     companion object {
-
+        val Sample = Level(
+            activities = listOf(Activity.Sample, Activity.Sample, Activity.Sample),
+            description = "Collect your personalised techniques to beat Anxiety",
+            level = "1",
+            state = State.AVAILABLE,
+            title = "Find your tools"
+        )
     }
 }
 
