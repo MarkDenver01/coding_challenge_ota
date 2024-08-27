@@ -19,6 +19,7 @@ import okhttp3.CacheControl
 import okhttp3.ConnectionPool
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -26,33 +27,34 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+@Module
+class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+    fun provideRetrofit(
+        httpClient: OkHttpClient,
+        gson: Gson
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(DEFAULT_BASE_URL)
-            .client(okHttpClient)
+            .client(httpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideOkHttpClient(
-        @ApplicationContext context: Context,
-        httpLoggingInterceptor: HttpLoggingInterceptor,
+    fun provideHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
         interceptor: Interceptor,
         connectionPool: ConnectionPool,
         cache: Cache
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addNetworkInterceptor(httpLoggingInterceptor)
+            .addNetworkInterceptor(loggingInterceptor)
             .connectTimeout(CONNECTION_TIME_OUT_INTERVAL, TimeUnit.SECONDS)
             .writeTimeout(WRITE_CONNECTION_TIME_OUT_INTERVAL, TimeUnit.SECONDS)
             .readTimeout(READ_CONNECTION_TIME_OUT_INTERVAL, TimeUnit.SECONDS)
@@ -65,54 +67,48 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideCache(@ApplicationContext context: Context): Cache {
-        val cacheSize: Long = 10 * 1024 * 1024
-        val cache = Cache(context.cacheDir, cacheSize)
-        return cache
+        val cacheSize: Long = (10 * 1024 * 1024)
+        return Cache(context.cacheDir, cacheSize)
     }
 
     @Provides
     @Singleton
-    fun provideConnectionPool(): ConnectionPool =
-        ConnectionPool(10, 10, TimeUnit.MINUTES)
+    fun provideConnectionPool(): ConnectionPool = ConnectionPool(10, 10, TimeUnit.MINUTES)
 
     @Provides
     @Singleton
-    fun provideGson(): Gson =
-        GsonBuilder()
-            .setLenient()
-            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-            .create()
+    fun provideGson(): Gson = GsonBuilder()
+        .setLenient()
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        .create()
 
     @Provides
     @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton
-    fun provideCachingInterceptor(
-        @ApplicationContext context: Context
-    ): Interceptor {
-        return Interceptor { chain: Interceptor.Chain ->
-            var newRequest = chain.request().newBuilder().build()
+    fun provideInterceptor(@ApplicationContext context: Context): Interceptor {
+        return Interceptor { chain ->
+            var requestWithUserAgent: Request = chain.request().newBuilder().build()
 
             if (isNetworkConnected(context)) {
-                val cacheControl = CacheControl.Builder()
-                    .maxAge(5, TimeUnit.MINUTES).build()
-
-                newRequest = newRequest.newBuilder()
+                val cacheControl: CacheControl = CacheControl.Builder()
+                    .maxAge(5, TimeUnit.MINUTES)
+                    .build()
+                requestWithUserAgent = requestWithUserAgent.newBuilder()
                     .cacheControl(cacheControl)
                     .build()
             } else {
-                newRequest = chain.request().newBuilder()
+                requestWithUserAgent = requestWithUserAgent.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build()
             }
 
-            return@Interceptor chain.proceed(newRequest)
+            chain.proceed(requestWithUserAgent)
         }
     }
 
 
 }
-

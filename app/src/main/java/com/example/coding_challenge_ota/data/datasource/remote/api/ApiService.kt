@@ -7,15 +7,10 @@ import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.Url
 
-interface ApiInterface {
-
+interface ApiService {
     @GET
-    fun getSampleApi(
-        @Url
-        baseUrl: String,
-        @HeaderMap
-        header: Map<String, String>
+    suspend fun getLevel(
+        @Url baseUrl: String,
+        @HeaderMap headerMap: Map<String, String>
     ): Observable<Response<JsonObject>>
-
-
 }

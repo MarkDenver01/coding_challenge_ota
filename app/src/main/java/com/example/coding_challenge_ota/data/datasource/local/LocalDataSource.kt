@@ -1,25 +1,21 @@
 package com.example.coding_challenge_ota.data.datasource.local
 
-import com.example.coding_challenge_ota.data.datasource.local.dao.LevelDao
-import com.example.coding_challenge_ota.domain.interfaces.local.Local
-import com.example.coding_challenge_ota.domain.model.Level
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.coding_challenge_ota.data.datasource.local.db.dao.UserDao
+import com.example.coding_challenge_ota.data.datasource.local.db.entity.UserEntity
+import com.example.coding_challenge_ota.domain.repository.Local
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
-    private val levelDao: LevelDao
+    private val userDao: UserDao
 ) : Local {
+    override suspend fun retrieveLevel(userName: String): UserEntity =
+        userDao.retrieveLevel(userName)
 
-    override suspend fun fetchAll(): List<Level> = withContext(Dispatchers.IO) {
-        levelDao.fetchAll()
+    override suspend fun insertUser(userEntity: UserEntity) {
+        userDao.insertUser(userEntity)
     }
 
-    override suspend fun insertAll(levels: List<Level>) = withContext(Dispatchers.IO) {
-        levelDao.insertAll(levels)
-    }
-
-    override suspend fun deleteAll() = withContext(Dispatchers.IO) {
-        levelDao.deleteAll()
+    override suspend fun deleteUser(userName: String) {
+        userDao.deleteUser(userName)
     }
 }

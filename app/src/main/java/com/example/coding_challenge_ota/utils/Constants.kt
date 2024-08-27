@@ -16,4 +16,6 @@ object Constants {
     const val READ_CONNECTION_TIME_OUT_INTERVAL = 10L
     const val WRITE_CONNECTION_TIME_OUT_INTERVAL = 10L
     const val CONNECTION_TIME_OUT_INTERVAL = 30L
+
+    const val SAMPLE_TOKEN_API = "S3IxRVXKxSNwPHyPJXpsc" // it depends on cloud services (AWS, AIM, etc) which generate a token for your API (as of now, I declare the token as STATIC)
 }

@@ -13,3 +13,11 @@ fun isNetworkConnected(context: Context): Boolean {
     val capabilities = manager.getNetworkCapabilities(network) ?: return false
     return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
 }
+
+fun setHeader(token: String): Map<String, String> {
+    val header = mutableMapOf<String, String>()
+    header["Content-Type"] = "application/json"
+    header["Authorization"] = token
+    header["Connection"] = "keep-alive"
+    return header
+}

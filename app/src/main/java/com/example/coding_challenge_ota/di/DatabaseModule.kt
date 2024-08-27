@@ -2,7 +2,7 @@ package com.example.coding_challenge_ota.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.coding_challenge_ota.data.datasource.local.AppDatabase
+import com.example.coding_challenge_ota.data.datasource.local.db.AppDatabase
 import com.example.coding_challenge_ota.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -13,16 +13,15 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object DatabaseModule {
+class DatabaseModule {
 
     @Provides
-    fun providesDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(
+    @Singleton
+    fun providesAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
             DATABASE_NAME
         ).build()
-
-    @Provides
-    fun provideLevelDao(appDatabase: AppDatabase) = appDatabase.levelDao()
+    }
 }

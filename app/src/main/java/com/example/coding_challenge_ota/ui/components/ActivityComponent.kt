@@ -31,9 +31,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coding_challenge_ota.utils.downloader.FileDownloader
-import com.example.coding_challenge_ota.domain.model.Activity
-import com.example.coding_challenge_ota.domain.model.iconFileName
-import com.example.coding_challenge_ota.domain.model.iconUrl
+import com.example.coding_challenge_ota.domain.models.Activity
+import com.example.coding_challenge_ota.domain.models.iconFileName
+import com.example.coding_challenge_ota.domain.models.iconUrl
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
 
 @Composable
