@@ -49,7 +49,7 @@ fun HeaderComponent(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_journey_status),
@@ -66,7 +66,7 @@ fun HeaderComponent(
             dayStreak = dayStreak
         )
         UserIconHeader(
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier.padding(start = 12.dp)
         )
     }
 }
@@ -153,7 +153,7 @@ private fun UserIconHeader(
 ) {
     Box(
         modifier = modifier
-            .shadow(elevation = 4.dp, shape = CircleShape)
+            .shadow(elevation = 20.dp, shape = CircleShape)
             .background(
                 color = MaterialTheme.colorScheme.background,
                 shape = CircleShape
@@ -172,7 +172,7 @@ private fun UserIconHeader(
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(10.12.dp, 17.77.dp)
+                .size(150.dp, 150.dp)
         )
     }
 }
@@ -184,7 +184,7 @@ private fun HeaderPreview() {
         Column(modifier = Modifier.fillMaxSize()) {
             HeaderComponent(
                 modifier = Modifier.fillMaxWidth(),
-                progress = 0.03f,
+                progress = 0.5f,
                 progressStatus = "Taming Temper",
                 dayStreak = 0,
             )

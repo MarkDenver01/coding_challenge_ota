@@ -25,8 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coding_challenge_ota.R
-import com.example.coding_challenge_ota.domain.model.Level
-import com.example.coding_challenge_ota.domain.model.State
+import com.example.coding_challenge_ota.domain.models.Level
+import com.example.coding_challenge_ota.domain.models.LevelState
+import com.example.coding_challenge_ota.domain.models.Levels
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -102,9 +103,9 @@ fun LevelComponent(
         ) {
             level.activities.forEach { activity ->
                 ActivityComponent(
-                    isLocked = level.state == State.LOCKED,
+                    isLocked = level.state == LevelState.LOCKED,
                     activity = activity,
-                    modifier = Modifier.weight(1f)
+                    sel
                 )
             }
         }
@@ -117,17 +118,16 @@ private fun LevelItemPreview() {
     Coding_challenge_otaTheme(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
             LevelComponent(
-                modifier = Modifier.fillMaxWidth(),
-                level = Level.Sample,
-
-                )
-            LevelComponent(
-                modifier = Modifier.fillMaxWidth(),
-                level = Level.Sample.copy(level = "2", state = State.LOCKED)
+                level = Level.dummy,
+                modifier = Modifier.fillMaxWidth()
             )
             LevelComponent(
-                modifier = Modifier.fillMaxWidth(),
-                level = Level.Sample.copy(level = "3", state = State.LOCKED)
+                level = Level.dummy.copy(level = "2", state = LevelState.LOCKED),
+                modifier = Modifier.fillMaxWidth()
+            )
+            LevelComponent(
+                level = Level.dummy.copy(level = "3", state = LevelState.LOCKED),
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }

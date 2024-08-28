@@ -1,11 +1,11 @@
 package com.example.coding_challenge_ota.ui.screen
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,18 +45,18 @@ fun HomeScreen(
     levelViewModel: LevelViewModel = hiltViewModel()
 ) {
     val scroll = rememberLazyListState()
-    val levels by levelViewModel.levelsAsStateFlow.collectAsState()
+    val levelCollectState by levelViewModel.levelsAsStateFlow.collectAsState()
 
     LaunchedEffect(Unit) {
-        levelViewModel.retrieveLevel("Denver")
+        levelViewModel.retrieveLevel()
     }
 
     Scaffold(
         topBar = {
             MainHeader(
-                progress = 0.72f,
+                progress = 0.52f,
                 progressStatus = stringResource(R.string.taming_temper),
-                day = 0,
+                day = levelCollectState.firePoints,
                 scroll = scroll
             )
         },
@@ -69,7 +69,7 @@ fun HomeScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             itemsIndexed(
-                items = levels,
+                items = levelCollectState.levels.levels,
                 key = { _, level -> level.level }
             ) { index, level ->
                 Spacer(modifier = Modifier.height(if (index == 0) 32.dp else 40.dp))
@@ -128,7 +128,7 @@ private fun MainFooter() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 16.dp),
+                .padding(top = 12.dp, bottom = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(11.dp)
 

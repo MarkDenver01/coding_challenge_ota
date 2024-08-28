@@ -1,4 +1,4 @@
-package com.example.coding_challenge_ota.data.cache
+package com.example.coding_challenge_ota.utils
 
 import androidx.compose.ui.graphics.ImageBitmap
 

@@ -1,11 +1,8 @@
-package com.example.coding_challenge_ota.utils.downloader
+package com.example.coding_challenge_ota.utils
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
-import com.example.coding_challenge_ota.data.cache.BitmapCache
-import com.example.coding_challenge_ota.utils.converter.PdfToBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -14,7 +11,7 @@ import java.net.URL
 
 object FileDownloader {
 
-    suspend fun download(
+    private suspend fun download(
         context: Context,
         url: String,
         filename: String
@@ -37,8 +34,6 @@ object FileDownloader {
 
             val statusCode = connection.responseCode
             if (statusCode != HttpURLConnection.HTTP_OK) {
-                // handle error here
-                Log.d("JIANDDEBUG", "Connection error: $statusCode")
                 connection.disconnect()
                 return@withContext false
             }
@@ -50,7 +45,6 @@ object FileDownloader {
             }
             result = true
         } catch (e: Exception) {
-            Log.d("JIANDDEBUG", "e.message: ${e.message}")
             e.printStackTrace()
         } finally {
             connection?.disconnect()

@@ -2,6 +2,7 @@ package com.example.coding_challenge_ota.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,25 +31,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coding_challenge_ota.utils.downloader.FileDownloader
 import com.example.coding_challenge_ota.domain.models.Activity
 import com.example.coding_challenge_ota.domain.models.iconFileName
 import com.example.coding_challenge_ota.domain.models.iconUrl
 import com.example.coding_challenge_ota.ui.theme.Coding_challenge_otaTheme
+import com.example.coding_challenge_ota.utils.FileDownloader
 
 @Composable
 fun ActivityComponent(
     modifier: Modifier = Modifier,
     isLocked: Boolean,
-    activity: Activity
+    activity: Activity,
+    onTapActivity: ((Activity) -> Unit) = {}
 ) {
     val context = LocalContext.current
-    var imageBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+    var imgBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(activity) {
         val filename = activity.iconFileName(isLocked)
-
-        imageBitmap = FileDownloader.downloadPdfAsImageBitmap(
+        imgBitmap = FileDownloader.downloadPdfAsImageBitmap(
             context = context,
             url = activity.iconUrl(isLocked),
             filename = filename
@@ -59,7 +60,7 @@ fun ActivityComponent(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        imageBitmap?.let {
+        imgBitmap?.let {
             Image(
                 bitmap = it,
                 contentDescription = null,
@@ -74,6 +75,7 @@ fun ActivityComponent(
                     color = Color.LightGray.copy(alpha = 0.3f),
                     shape = RoundedCornerShape(24.dp)
                 )
+                .clickable { onTapActivity(activity) }
         ) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
@@ -106,18 +108,18 @@ fun LessonItemPreview() {
             ActivityComponent(
                 modifier = Modifier.weight(1f),
                 isLocked = false,
-                activity = Activity.Sample,
+                activity = Activity.Dummy
 
             )
             ActivityComponent(
                 modifier = Modifier.weight(1f),
                 isLocked = true,
-                activity = Activity.Sample,
+                activity = Activity.Dummy,
             )
             ActivityComponent(
                 modifier = Modifier.weight(1f),
                 isLocked = true,
-                activity = Activity.Sample,
+                activity = Activity.Dummy,
             )
         }
     }

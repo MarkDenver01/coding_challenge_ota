@@ -1,4 +1,4 @@
-package com.example.coding_challenge_ota.utils.converter
+package com.example.coding_challenge_ota.utils
 
 import android.content.Context
 import android.graphics.Bitmap

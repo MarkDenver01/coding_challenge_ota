@@ -3,6 +3,7 @@ package com.example.coding_challenge_ota.di
 import android.content.Context
 import androidx.room.Room
 import com.example.coding_challenge_ota.data.datasource.local.db.AppDatabase
+import com.example.coding_challenge_ota.data.datasource.local.db.utils.DataTypeConverters
 import com.example.coding_challenge_ota.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,7 @@ class DatabaseModule {
             context,
             AppDatabase::class.java,
             DATABASE_NAME
-        ).build()
+        )
+            .build()
     }
 }

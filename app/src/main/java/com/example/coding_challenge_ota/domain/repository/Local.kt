@@ -5,7 +5,5 @@ import com.example.coding_challenge_ota.data.datasource.local.db.entity.UserEnti
 interface Local {
     suspend fun retrieveLevel(userName: String): UserEntity
 
-    suspend fun insertUser(userEntity: UserEntity)
-
-    suspend fun deleteUser(userName: String)
+    suspend fun insertLevel(userEntity: UserEntity)
 }
