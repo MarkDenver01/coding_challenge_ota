@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +34,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,13 +50,12 @@ fun HeaderComponent(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 16.dp)
+        modifier = Modifier.padding(horizontal = 12.dp, vertical = 58.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_journey_status),
             contentDescription = null,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(45.dp)
         )
         ProgressHeader(
             progress = progress,
@@ -66,7 +67,7 @@ fun HeaderComponent(
             dayStreak = dayStreak
         )
         UserIconHeader(
-            modifier = Modifier.padding(start = 12.dp)
+            modifier = Modifier.padding(start = 16.dp)
         )
     }
 }
@@ -135,14 +136,15 @@ private fun StreakHeader(
         Image(
             painter = painterResource(id = R.drawable.ic_fire),
             contentDescription = null,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(45.dp)
         )
         Text(
             text = "$dayStreak",
+            textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.primary,
             fontSize = 16.sp,
             fontWeight = FontWeight.W500,
-            lineHeight = 26.sp
+            lineHeight = 45.sp
         )
     }
 }
@@ -153,7 +155,6 @@ private fun UserIconHeader(
 ) {
     Box(
         modifier = modifier
-            .shadow(elevation = 20.dp, shape = CircleShape)
             .background(
                 color = MaterialTheme.colorScheme.background,
                 shape = CircleShape
@@ -165,14 +166,14 @@ private fun UserIconHeader(
                     shape = CircleShape
                 ) else it
             }
-            .size(40.dp)
+            .size(45.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_myaccount_round_thumbnail),
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(150.dp, 150.dp)
+                .size(45.dp, 45.dp)
         )
     }
 }

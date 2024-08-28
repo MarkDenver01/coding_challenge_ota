@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">coding_challenge_ota</string>
-    <string name="taming_temper">Taming temper</string>
+    <string name="taming">Taming temper</string>
     <string name="journey">Journey</string>
     <string name="level">LEVEL %1$s</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.coding_challenge_ota.ui.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -13,7 +14,7 @@ import com.example.coding_challenge_ota.utils.Constants.JOURNEY
 
 fun NavGraphBuilder.mainNavigation(navController: NavController) {
     composable(Screen.Home.route) {
-        HomeScreen(modifier = Modifier.fillMaxWidth())
+        HomeScreen(modifier = Modifier.fillMaxSize())
     }
 }
 

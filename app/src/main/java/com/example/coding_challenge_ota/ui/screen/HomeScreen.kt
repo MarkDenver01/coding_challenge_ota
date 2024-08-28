@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -52,16 +54,16 @@ fun HomeScreen(
     }
 
     Scaffold(
+        modifier = Modifier.fillMaxHeight(),
         topBar = {
             MainHeader(
-                progress = 0.52f,
-                progressStatus = stringResource(R.string.taming_temper),
+                progress = 0.1f,
+                progressStatus = stringResource(R.string.taming),
                 day = levelCollectState.firePoints,
                 scroll = scroll
             )
         },
-        bottomBar = { MainFooter() },
-        modifier = modifier
+        bottomBar = { MainFooter() }
     ) { contentPadding ->
         LazyColumn(
             state = scroll,
@@ -74,8 +76,8 @@ fun HomeScreen(
             ) { index, level ->
                 Spacer(modifier = Modifier.height(if (index == 0) 32.dp else 40.dp))
                 LevelComponent(
-                    level = level,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    level = level
                 )
             }
             item { Spacer(modifier = Modifier.height(40.dp)) }
@@ -95,7 +97,7 @@ private fun MainHeader(
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize()
+            .fillMaxWidth()
     ) {
         HeaderComponent(
             modifier = Modifier.fillMaxWidth(),
@@ -103,6 +105,14 @@ private fun MainHeader(
             progressStatus = progressStatus,
             dayStreak = day
         )
+
+        Spacer(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.tertiary)
+                .fillMaxWidth()
+                .height(1.dp)
+        )
+
         DayComponent(
             modifier = Modifier.fillMaxWidth(),
             onTabSelected = { index ->
@@ -128,7 +138,7 @@ private fun MainFooter() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 12.dp),
+                .padding(top = 12.dp, bottom = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(11.dp)
 

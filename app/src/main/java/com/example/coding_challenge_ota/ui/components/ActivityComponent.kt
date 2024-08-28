@@ -41,19 +41,19 @@ import com.example.coding_challenge_ota.utils.FileDownloader
 fun ActivityComponent(
     modifier: Modifier = Modifier,
     isLocked: Boolean,
-    activity: Activity,
-    onTapActivity: ((Activity) -> Unit) = {}
+    activity: Activity
 ) {
     val context = LocalContext.current
     var imgBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(activity) {
         val filename = activity.iconFileName(isLocked)
-        imgBitmap = FileDownloader.downloadPdfAsImageBitmap(
-            context = context,
-            url = activity.iconUrl(isLocked),
-            filename = filename
-        )
+//        imgBitmap = FileDownloader.downloadPdfAsImageBitmap(
+//            context = context,
+//            url = activity.iconUrl(isLocked),
+//            filename = filename
+//        )
+        imgBitmap = null
     }
 
     Column(
@@ -75,7 +75,6 @@ fun ActivityComponent(
                     color = Color.LightGray.copy(alpha = 0.3f),
                     shape = RoundedCornerShape(24.dp)
                 )
-                .clickable { onTapActivity(activity) }
         ) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }

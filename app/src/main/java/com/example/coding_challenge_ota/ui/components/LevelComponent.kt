@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coding_challenge_ota.R
+import com.example.coding_challenge_ota.domain.models.Activity
 import com.example.coding_challenge_ota.domain.models.Level
 import com.example.coding_challenge_ota.domain.models.LevelState
 import com.example.coding_challenge_ota.domain.models.Levels
@@ -103,9 +104,9 @@ fun LevelComponent(
         ) {
             level.activities.forEach { activity ->
                 ActivityComponent(
+                    modifier = Modifier.weight(1f),
                     isLocked = level.state == LevelState.LOCKED,
-                    activity = activity,
-                    sel
+                    activity = activity
                 )
             }
         }
