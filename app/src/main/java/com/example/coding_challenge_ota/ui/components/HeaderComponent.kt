@@ -55,7 +55,7 @@ fun HeaderComponent(
         Image(
             painter = painterResource(id = R.drawable.ic_journey_status),
             contentDescription = null,
-            modifier = Modifier.size(45.dp)
+            modifier = Modifier.size(35.dp)
         )
         ProgressHeader(
             progress = progress,
@@ -136,7 +136,7 @@ private fun StreakHeader(
         Image(
             painter = painterResource(id = R.drawable.ic_fire),
             contentDescription = null,
-            modifier = Modifier.size(45.dp)
+            modifier = Modifier.size(40.dp)
         )
         Text(
             text = "$dayStreak",
