@@ -3,6 +3,7 @@ package com.example.coding_challenge_ota.data.repository
 import android.content.Context
 import android.util.Log
 import com.example.coding_challenge_ota.data.datasource.local.LocalDataSource
+import com.example.coding_challenge_ota.data.datasource.local.db.entity.JourneyStatus
 import com.example.coding_challenge_ota.data.datasource.local.db.entity.UserEntity
 import com.example.coding_challenge_ota.data.datasource.remote.RemoteDataSource
 import com.example.coding_challenge_ota.domain.models.Level
@@ -22,6 +23,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import java.io.File
 import javax.inject.Inject
+import kotlin.random.Random
 
 @ViewModelScoped
 @OptIn(ExperimentalSerializationApi::class)
@@ -33,11 +35,14 @@ class LevelRepository @Inject constructor(
 ) {
 
     private val compositeDisposable by lazy { CompositeDisposable() }
+    private val mockJourneyStatus: Int = Random.nextInt(100)
+    private val mockFirePoints: Int = (mockJourneyStatus * 2)
+    private val userName = "denver"
 
-    suspend fun getUserLevel(userName: String, firePoints: Int): UserEntity {
+    suspend fun getUserLevel(): UserEntity {
         if (isDebug) {
             val json = Json.decodeFromStream<Levels>(context.assets.open("levels.json"))
-            val entity = UserEntity(userName, firePoints, json)
+            val entity = UserEntity(userName, mockFirePoints, JourneyStatus(mockJourneyStatus), json)
             Log.d("xxxxx-json-dummy", "usr: " + entity.userName)
             Log.d("xxxxx-json-dummy", "level: " + entity.levels.levels[0].level)
             Log.d("xxxxx-json-dummy", "title: " + entity.levels.levels[0].title)
@@ -60,7 +65,8 @@ class LevelRepository @Inject constructor(
         }
 
         val levels = getLevelFromApi(SAMPLE_TOKEN_API)
-        val userEntity = UserEntity(userName, firePoints, levels)
+        val userEntity =
+            UserEntity(userName, mockFirePoints, JourneyStatus(mockJourneyStatus), levels)
         localDataSource.insertLevel(userEntity)
         return userEntity
     }
@@ -68,6 +74,7 @@ class LevelRepository @Inject constructor(
     private suspend fun getLevelFromLocal(userName: String): UserEntity =
         withContext(Dispatchers.IO) {
             val localData = localDataSource.retrieveLevel(userName)
+
             return@withContext localData
         }
 

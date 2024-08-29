@@ -1,16 +1,10 @@
 package com.example.coding_challenge_ota.utils
 
+import kotlin.random.Random
+import kotlin.random.nextInt
+
 object Constants {
-    const val HOME = "home"
-    const val ACCOUNT = "account"
-    const val JOURNEY = "journey"
-
     const val DATABASE_NAME = "challenge_db"
-
-    const val REQUEST_TIME_OUT = 60L
-    const val OTP_LENGTH = 6
-    const val PER_PAGE_COUNT = 15
-
     const val DEFAULT_BASE_URL = "https://base-sample.com/"
     const val BASE_URL = "" // add your base url and end point
 
