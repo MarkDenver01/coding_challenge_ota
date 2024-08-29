@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.coding_challenge_ota.R
+import com.example.coding_challenge_ota.data.datasource.local.db.entity.JourneyStatus
 import com.example.coding_challenge_ota.ui.components.DayComponent
 import com.example.coding_challenge_ota.ui.components.HeaderComponent
 import com.example.coding_challenge_ota.ui.components.LevelComponent
@@ -57,8 +58,14 @@ fun HomeScreen(
         modifier = Modifier.fillMaxHeight(),
         topBar = {
             MainHeader(
-                progress = 0.1f,
-                progressStatus = stringResource(R.string.taming),
+                progress = levelCollectState.journeyStatus.progress.toFloat() / 100,
+                progressStatus = when (levelCollectState.journeyStatus.journeyState) {
+                    JourneyStatus.JourneyState.Angry -> "Angry"
+                    JourneyStatus.JourneyState.TamingTemper -> "Taming Temper"
+                    JourneyStatus.JourneyState.Calm -> "Calm"
+                    JourneyStatus.JourneyState.Interested -> "Interested"
+                    JourneyStatus.JourneyState.Happy -> "Happy"
+                },
                 day = levelCollectState.firePoints,
                 scroll = scroll
             )
