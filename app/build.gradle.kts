@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinSerialization)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -56,4 +60,41 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
+    kspAndroidTest(libs.hilt.android.compiler)
+
+    // navigation compose
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+
+    // gson
+    implementation(libs.google.gson)
+
+    // okhttp
+    implementation(libs.squareup.okhttp3)
+    implementation(libs.squareup.okhttp3Logging)
+
+    // Retrofit
+    implementation(libs.squareup.retrofit2)
+    implementation(libs.squareup.retrofit2ConverterGson)
+    implementation(libs.jakeWharton.retrofit2ConverterKotlin)
+    implementation(libs.squareup.retrofit2AdapterRxJava2)
+
+    // kotlinx
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // Room
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    ksp(libs.androidx.room.compiler)
+
+
+    // rxjava
+    implementation(libs.bundles.rxjava)
 }

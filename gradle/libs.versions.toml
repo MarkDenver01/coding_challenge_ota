@@ -1,13 +1,41 @@
 [versions]
 agp = "8.5.2"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
-composeBom = "2024.04.01"
+composeBom = "2024.06.00"
+### ksp
+kspVersion = "2.0.10-1.0.24"
+### hilt
+hiltVersion = "2.51.1"
+hiltNavigationCompose = "1.2.0"
+### compose
+lifecycleRuntimeComposeAndroid = "2.8.4"
+### coroutines
+coroutinesVersion = "1.7.3"
+### kotlin-serialization
+kotlinxVersion = "1.6.3"
+### gson
+gsonVersion = "2.10.1"
+### okhttp3
+okhttp3Version = "4.12.0"
+### retrofit2
+retrofit2Version = "2.11.0"
+### jakeWharton
+jakeWhartonVersion = "1.0.0"
+### Room
+roomVersion = "2.6.1"
+### lifecycleViewmodelCompose
+viewModelVersion = "2.7.0"
+### networkAdapter
+networkAdapterVersion = "4.0.1"
+### rxjava
+rxJavaVersion = "2.2.21"
+rxAndroidVersion = "2.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,9 +52,52 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+### hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltVersion" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltVersion" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+### compose
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
+### Coroutines
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+# gson [Github](https://github.com/google/gson)
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
+# okhttp3 [Github](https://github.com/square/okhttp)
+squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3Version" }
+squareup-okhttp3Urlconnection = { group = "com.squareup.okhttp3", name = "okhttp-urlconnection", version.ref = "okhttp3Version" }
+squareup-okhttp3Logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Version" }
+# Retrofit2 [Github](https://github.com/square/retrofit)
+squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2Version" }
+squareup-retrofit2AdapterRxJava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit2Version" }
+squareup-retrofit2AdapterRxJava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit2Version" }
+squareup-retrofit2ConverterGson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2Version" }
+squareup-retrofit2ConverterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit2Version" }
+# rxjava
+reactivex-rxjava2-rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxJavaVersion" }
+reactivex-rxjava2-rxandroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxAndroidVersion" }
+jakeWharton-retrofit2ConverterKotlin = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "jakeWhartonVersion" }
+# json [Github](https://github.com/Kotlin/kotlinx.serialization)
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxVersion" }
+# room database
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+# lifecycle view model
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelVersion" }
+# network adapter
+network-adapterRxJava2 = { group = "com.github.haroldadmin:NetworkResponseAdapter", name = "network-adapter", version.ref = "networkAdapterVersion" }
+
+[bundles]
+rxjava = ["reactivex-rxjava2-rxandroid", "reactivex-rxjava2-rxjava"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.0.10" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
 
