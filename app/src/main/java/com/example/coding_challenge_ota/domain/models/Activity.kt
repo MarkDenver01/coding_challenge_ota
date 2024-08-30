@@ -108,19 +108,3 @@ enum class ActivityState {
     NOT_SET,
     DONE,
 }
-
-fun Activity.iconUrl(isLocked: Boolean): String {
-    return if (isLocked) {
-        lockedIcon.file.url
-    } else {
-        icon.file.url
-    }
-}
-
-fun Activity.iconFileName(isLocked: Boolean): String {
-    return if (isLocked) {
-        lockedIcon.file.fileName
-    } else {
-        icon.file.fileName
-    }
-}
